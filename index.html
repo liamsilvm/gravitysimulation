@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "stylesheet" href = "index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <p id = "inputs">num particles</p>
+    <div id = "settings-container">
+        <input type = "range" min = "1" max = "10000" value = "50" class = "slider" id = "planetCount">
+    </div> -->
+    <canvas id = "canvas1"></canvas>
+        <div class = "no-highlight">
+            <div class = "quadtree">
+            
+                <div class = "quad-tree-modes">
+                    <span class = "quad-tree-mode" id = "thermal">thermal</span>
+                    <span class = "quad-tree-mode" id = "normal">normal</span>
+                </div>
+                <p id = "show-quad-tree">q u a d t r e e</p>
+    
+            </div>
+            <div class = "nav-buttons-container">
+                <p class = "nav-buttons display-settings" id = "settings">s e t t i n g s</p>
+                <p class = "nav-buttons nav-hide" id = "new-scene">s c e n e</p>
+                <p class = "nav-buttons nav-hide" id = "current-scene">s y s t e m</p>
+                <p class = "nav-buttons nav-hide" id = "graphics">g r a p h i c s</p>
+                <p class = "nav-buttons nav-hide" id = "mouse-effects">mouse effects</p>
+            </div>
+            <div class = "content-container" id = "settings">
+                <div class = "settings-container-text">
+                    <h1>s e t t i n g s</h1>
+                    <span>allow collisions:</span>
+                    
+                    <input id = "allow_collisions" type = "checkbox">
+                    
+                    <span>custom color</span>
+                    <input id = "particle_color">
+
+                    <span>multicolor</span>
+                    <input id = "allow_multicolor" type = "checkbox">
+
+                    
+                </div>
+            </div>
+            <div class = "content-container" id = "new-scene">
+                <div class = "settings-container-text"> 
+                    <h1>n e w   s c e n e</h1>
+                    <p>create a new scene</p>
+                    <input id = "num_particles" type = "number" placeholder = "number of particles">    
+                    <input type = "checkbox" id = "allow_mass_variance" placeholder = "allow mass variance">
+                    <input id = "mass_variance" type = "number" placeholder = "mass variance">
+                    <input id = "size_variance" type = "number" placeholder = "size variance">
+                    <br>
+                    <button id = "generate_scene">generate scene</button>
+                </div>
+    
+            </div>
+            <div class = "content-container" id = "current-scene"> 
+                <div class = "settings-container-text">
+                    <h1>s y s t e m</h1>
+                    <p>s y s t e m</p>
+                    <span>particle-count: </span><span id = "scene-count"></span>
+                    <div id = "scene-list"> 
+                        
+                    </div>
+                </div>
+            </div>
+            <div class = "content-container" id = "graphics"> 
+                <div class = "settings-container-text">
+                    <h1>g r a p h i c s</h1>
+    
+                    <span>random color</span>
+                    <input type = "checkbox">
+                    <br>
+                    <span>fill</span>
+                    <input type = "checkbox"> 
+                    <br>
+                    <input placeholder = "background color">
+                    <br> 
+                    <span>theme</span>
+    
+                </div>
+            </div>
+            <div class = "content-container" id = "mouse-effects">
+                <div class = "settings-container-text">
+                    <h1>Mouse Effects</h1>
+                    <input id = "particleGunMass" placeholder = "particle gun mass" type = "number">
+                    <br>
+                    <table id = "mouse effects"> 
+                        <tr> 
+                           <td class = "mouse-effects-column">blackhole</td>
+                           <td class = "mouse-effects-column">particle gun</td> 
+                           <td class = "mouse-effects-column">particle pointer</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+          
+        </div>
+
+    <!-- <script type = "module" src = "./Settings.js"></script> -->
+    <script type = "module" src = "./Shooter.js"></script>
+    <script type = "module" src = "./Point.js"></script>
+    <script type = "module" src = "./Rectangle.js"></script>
+    <script type = "module" src = "./QuadTree.js"></script>
+    <script type = "module" src = "./System.js"></script>
+    <script type = "module" src = "./RenderScene.js"></script>
+
+
+</body>
+</html>

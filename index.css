@@ -1,0 +1,167 @@
+body{ 
+    background: rgb(26, 26, 26);
+}
+h1{ 
+    font-family: monospace;
+    color: rgb(151, 241, 232);
+}
+input{ 
+    background-color: rgb(80, 80, 80);
+    border: 1px solid rgb(107, 107, 107); 
+    color: white; 
+}
+input [type = "range"]{ 
+    background: black;;
+}
+#canvas1{ 
+    position: fixed; 
+    top:0; 
+    left: 0;
+    z-Index: -99; 
+}
+
+.content-container{
+    font-family:'Times New Roman', Times, serif;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    display: none; 
+    padding-left: 10px;
+    padding-top: 10px; 
+}
+.content-container.active{ 
+    width: 100%; 
+    height: 200px; 
+    padding-left: 20%;
+    display: block; 
+    background-color: rgb(126, 126, 126);
+    z-index: -3;
+}
+
+.settings-container-text{ 
+    color: rgb(255, 255, 255); 
+    position: absolute; 
+    left: 100px; 
+    top: 0;
+    padding-left: 2%;
+
+}
+.settings-container input[type = "range"]::-webkit-slider-runnable-track{ 
+    width: 100px; 
+    color: red;
+} 
+ 
+.settings-navigation:hover{ 
+    background-color: rgb(46, 46, 46);
+    width: 10%;
+}
+#inputs{ 
+    color: white;
+    top: 0; 
+    left: 0;
+}
+
+
+.new-scene-container{ 
+    display: none; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: -1;
+}
+.new-scene-container.active{ 
+    display: block; 
+    width: 100%; 
+    height: 200px; 
+    background-color: rgb(54, 54, 54);
+    
+}   
+
+div#scene-list{ 
+    position: absolute; 
+    top: 0;
+    left: 400px; 
+    background-color: rgb(53, 175, 163);
+    width: 200px; 
+    height: 200px; 
+    overflow-x: auto; 
+    overflow-y: hidden;
+    padding: 20px; 
+    display:none; 
+}
+
+.nav-buttons-container{ 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+}
+.nav-buttons{ 
+   padding-left: 10px; 
+   font-stretch: extra-condensed;
+    z-index: 2; 
+    color: rgb(187, 187, 187); 
+}
+.nav-buttons:hover{ 
+    color: rgb(255, 255, 255);
+    z-index: 2;
+}
+.nav-hide{ 
+    display: none; 
+}
+.nav-hide.active{ 
+    display: block;
+}
+
+
+.quadtree{ 
+    position: absolute; 
+    bottom: 0; 
+    left: 0;
+}
+#show-quad-tree{ 
+    color: rgb(196, 183, 183); 
+    padding: 20px; 
+    font-size: 20px; 
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+#show-quad-tree:hover{ 
+    color: white; 
+}
+.quad-tree-modes{ 
+    opacity:.4;
+}
+.quad-tree-modes:hover{ 
+    opacity:1;
+
+}
+#thermal{ 
+    position:absolute;
+    top:0; 
+    right: 0; 
+}
+#normal{ 
+    position:absolute;
+    top:0; 
+    left: 0; 
+}
+.quad-tree-mode{ 
+    display:none; 
+}
+.quad-tree-mode:hover{ 
+    color:white;
+}
+.quad-tree-mode.active{ 
+    display:block;
+}
+.no-highlight{ 
+    cursor: pointer;
+}
+
+
+.mouse-effects-column{ 
+    border: 1px solid rgb(107, 107, 107); 
+}
+.mouse-effects-column:hover{ 
+    background-color: aquamarine;
+    color:rgb(41, 102, 102);
+}
