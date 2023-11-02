@@ -34,7 +34,7 @@ input [type = "range"]{
     height: 200px; 
     padding-left: 20%;
     display: block; 
-    background-color: rgb(126, 126, 126);
+
     z-index: -3;
 }
 
@@ -118,15 +118,21 @@ div#scene-list{
     bottom: 0; 
     left: 0;
 }
-#show-quad-tree{ 
+.bottom-buttons{ 
     color: rgb(196, 183, 183); 
     padding: 20px; 
     font-size: 20px; 
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
-#show-quad-tree:hover{ 
+.bottom-buttons:hover{ 
     color: white; 
 }
+/* #show-quad-tree{ 
+    
+}
+#show-quad-tree:hover{ 
+
+} */
 .quad-tree-modes{ 
     opacity:.4;
 }
@@ -164,4 +170,26 @@ div#scene-list{
 .mouse-effects-column:hover{ 
     background-color: aquamarine;
     color:rgb(41, 102, 102);
+}
+.notes{ 
+    color: rgb(176, 176, 226); 
+    font-size: 12px; 
+}
+
+
+.controls{ 
+    color: white;
+    opacity: 0.6
+
+}
+.controls:hover{ 
+    color: rgb(204, 110, 110);
+    opacity: 0.6
+
+}
+#controls{ 
+    position: fixed; 
+    right: 0; 
+    bottom: 0; 
+    padding-right: 20px;
 }

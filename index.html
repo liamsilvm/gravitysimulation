@@ -19,7 +19,12 @@
                     <span class = "quad-tree-mode" id = "thermal">thermal</span>
                     <span class = "quad-tree-mode" id = "normal">normal</span>
                 </div>
-                <p id = "show-quad-tree">q u a d t r e e</p>
+                <p class = "bottom-buttons" id = "show-quad-tree">q u a d t r e e</p>
+                <p class = "bottom-buttons" id = "show-ASCII">A S C I I</p>
+                <div id = "controls">
+                    <p class = "controls">W - A - S - D to move</p>
+                    <p class = "controls">scroll to zoom in and out</p>
+                </div>
     
             </div>
             <div class = "nav-buttons-container">
@@ -28,6 +33,8 @@
                 <p class = "nav-buttons nav-hide" id = "current-scene">s y s t e m</p>
                 <p class = "nav-buttons nav-hide" id = "graphics">g r a p h i c s</p>
                 <p class = "nav-buttons nav-hide" id = "mouse-effects">mouse effects</p>
+                <p class = "nav-buttons nav-hide" id = "optimize">optimize</p>
+                <P CLASS = "nav-buttons nav-hide" id = "theme">theme</p>
             </div>
             <div class = "content-container" id = "settings">
                 <div class = "settings-container-text">
@@ -98,11 +105,38 @@
                     </table>
                 </div>
             </div>
+            <div class = "content-container" id = "optimize"> 
+                <div class = "settings-container-text"> 
+                    <h1>Optimize</h1> 
+                    <input  type = "number" placeholder = "count per brach" id = "countPerBranch">
+                    <p id = "CPBoutput"></p>
+                    <br> 
+                    
+                    <span>distance side accuracy: <input placeholder= "distance side accuracy" type = "range" id = "distanceSideAccuracy" min = "1" max = "100"></span>
+                    <p class = "notes">distance side accuracy will determine the distance in which 
+                        to start grouping particles as one. 
+                    </p>
+
+                </div>
+            </div>
+            <div class = "content-container" id = "theme">
+                <div class = "settings-container-text"> 
+                    <h1>Select theme</h1>
+                    <table id = "theme-selection"> 
+                        <tr> 
+                           <td id = "theme-vanilla" class = "mouse-effects-column">vanilla</td>
+                           <td id = "theme-random-colors" class = "mouse-effects-column">random colors</td> 
+                           <td id = "theme-keyboard-characters" class = "mouse-effects-column">keyboard characters</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
           
         </div>
 
     <!-- <script type = "module" src = "./Settings.js"></script> -->
     <script type = "module" src = "./Shooter.js"></script>
+    <script type = "module" src = './ASCIIfilter.js'></script>
     <script type = "module" src = "./Point.js"></script>
     <script type = "module" src = "./Rectangle.js"></script>
     <script type = "module" src = "./QuadTree.js"></script>

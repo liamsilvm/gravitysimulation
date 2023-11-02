@@ -8,6 +8,14 @@ let canvas = ctx.getContext
 canvas.width = window.innerWidth 
 canvas.height = window.innerHeight
 
+const initialWidth = window.innerWidth 
+const initialheight = window.innerHeight
+window.addEventListener('resize', (e) => { 
+    canvas.width = window.innerWidth 
+    canvas.height = window.innerHeight
+})
+
+
 //settings inputs 
 
 export class System{ 
@@ -34,12 +42,16 @@ export class System{
         //OBJECTS SETTINGS 
         this.FP = FP // FILL PARTICLES 
         this.INP = INP //INITIAL NUMBER OF PARTICLES 
-        this.zoom = 1
+        this.zoom = zoom
         this.PBS = PBS//playbackSpeed
 
         this.STM = STM //SHOW THERMAL MAP 
         this.cameraAccelerationX = 0
         this.cameraAccelerationY = 0
+
+        this.offsetX = 0; 
+        this.offsetY = 0; 
+
     }
     populate(){ 
         let x; let y;
@@ -47,17 +59,22 @@ export class System{
         this.AMV ?  mass = this.MV * Math.random() : mass = this.GM
         // mass = 500
         let angle = 0
-        let increment = Math.PI * 2 / this.count
+        let increment = Math.PI * 2 / this.INP
         let radius = 200
         for(let i = 0; i < this.INP; i++){ 
 
             x = radius * Math.cos(angle) + canvas.width/2
             y = radius * Math.sin(angle) + canvas.height/2
-            x = Math.random() * canvas.width 
-            y = Math.random() * canvas.height
-  
-            this.system.push(new Point(x, y, mass, Math.random() * this.SV, this.FP, this.zoom,this.PBS))
+            // x = Math.random() * canvas.width 
+            // y = Math.random() * canvas.height
+            
+            let curPoint = new Point(x, y, mass, Math.random() * this.SV, this.FP, this.zoom,this.PBS)
+
+
+            this.system.push(curPoint)
             angle += increment
+
+            
         }
         this.prevSystem = [...this.system]
     }
@@ -79,7 +96,7 @@ export class System{
         let newW = (maxX - minX) 
         let newH = (maxY - minY)
         let boundary = new Rectangle(minX + newW/2, minY + newH/2 , newW/2, newH/2, this.STM, this.zoom)
-        this.quadtree = new QuadTree(boundary, this.CPB, true, this.DSA, this.FDF, this.DQT, this.CDD,this.zoom,this.PBS,this.STM)
+        this.quadtree = new QuadTree(boundary, this.CPB, true, this.DSA, this.FDF, this.DQT, this.CDD,this.zoom,this.PBS,this.STM, this.offsetX, this.offsetY)
 
         this.system.forEach(particle => { 
             this.quadtree.insert(particle)

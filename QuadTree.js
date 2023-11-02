@@ -4,10 +4,16 @@ let canvas = document.getElementById('canvas1')
 let ctx = canvas.getContext('2d')
 canvas.width = window.innerWidth 
 canvas.height = window.innerHeight
+window.addEventListener('resize', (e) => { 
+    canvas.width = window.innerWidth 
+    canvas.height = window.innerHeight
+})
 
+const initialWidth = window.innerWidth 
+const initialHeight = window.innerHeight
 
 export class QuadTree{ 
-    constructor(boundary, CPB, debug, DSA, FDF, DQT, CDD, zoom, PBS, STM){ 
+    constructor(boundary, CPB, debug, DSA, FDF, DQT, CDD, zoom, PBS, STM, offsetX, offsetY){ 
 
         this.DSA = DSA //Distance Side Accuracy
         this.CPB = CPB //Count Per Branch 
@@ -24,6 +30,10 @@ export class QuadTree{
         debug ? this.debug = debug : this.debug = false
         this.CM = new Point(null, null, null) //Center Mass
         this.STM = STM //Show Thermal Map
+
+        //offset 
+        this.offsetX = offsetX 
+        this.offsetY = offsetY
     }
     subdivide(){ 
 
@@ -33,13 +43,13 @@ export class QuadTree{
         let h = this.boundary.h;
 
         let ne = new Rectangle(x + w/2, y - h/2, w/2, h/2, this.STM, this.zoom)
-        this.northwest = new QuadTree(ne, this.capacity, false, this.DSA, this.FDF, this.DQT, this.CDD, this.zoom, this.PBS, this.STM)
+        this.northwest = new QuadTree(ne, this.capacity, false, this.DSA, this.FDF, this.DQT, this.CDD, this.zoom, this.PBS, this.STM, this.offsetX, this.offsetY)
         let nw = new Rectangle(x - w/2, y - h/2, w/2, h/2, this.STM, this.zoom)
-        this.northeast = new QuadTree(nw, this.capacity, false, this.DSA, this.FDF, this.DQT, this.CDD, this.zoom, this.PBS, this.STM)
+        this.northeast = new QuadTree(nw, this.capacity, false, this.DSA, this.FDF, this.DQT, this.CDD, this.zoom, this.PBS, this.STM, this.offsetX, this.offsetY)
         let se = new Rectangle(x + w/2, y + h/2, w/2, h/2, this.STM, this.zoom)
-        this.southwest = new QuadTree(se, this.capacity, false, this.DSA, this.FDF, this.DQT, this.CDD, this.zoom, this.PBS, this.STM)
+        this.southwest = new QuadTree(se, this.capacity, false, this.DSA, this.FDF, this.DQT, this.CDD, this.zoom, this.PBS, this.STM, this.offsetX, this.offsetY)
         let sw = new Rectangle(x - w/2, y + h/2, w/2, h/2, this.STM, this.zoom)
-        this.southeast = new QuadTree(sw, this.capacity, false, this.DSA, this.FDF, this.DQT, this.CDD, this.zoom, this.PBS, this.STM)
+        this.southeast = new QuadTree(sw, this.capacity, false, this.DSA, this.FDF, this.DQT, this.CDD, this.zoom, this.PBS, this.STM, this.offsetX, this.offsetY)
     }
     insertChildren(p){ 
         if(this.divided){ 
@@ -112,16 +122,25 @@ export class QuadTree{
                 ctx.beginPath() 
                 ctx.strokeStyle = 'rgba(0,0,0,0.9)'
                 this.STM ? ctx.fillStyle = `rgb(${255 * (1/(this.boundary.w))}, 0, 0)` : null
-                ctx.rect(this.boundary.x-this.boundary.w, this.boundary.y-this.boundary.h, this.boundary.w*2, this.boundary.h*2)
-                ctx.stroke()
+                let renderX = (this.boundary.x - this.boundary.w)/this.zoom + (this.offsetX * .5)
+                let renderY = (this.boundary.y - this.boundary.h)/this.zoom + (this.offsetY * .5)
+                let renderW = (this.boundary.w*2)/this.zoom
+                let renderH = (this.boundary.h*2)/this.zoom
+                ctx.rect(renderX, renderY, renderW, renderH)
+                if(!this.STM){ 
+                    khin
+                }
                 ctx.fill()
-                ctx.restore()
+                ctx.restore() 
             }
         }
-        this.points.forEach(point => { 
+        if(!this.DQT){ 
+            this.points.forEach(point => { 
 
-            point.draw('turquoise', 1)
-        })
+                point.draw('turquoise', 1, this.zoom, this.offsetX, this.offsetY)
+            })
+        }
+        
     }
     resolveCollision(pointA, pointB) {
         let collisionVector = {
@@ -134,8 +153,8 @@ export class QuadTree{
         let overlap = (pointA.size + pointB.size) - distance;
     
         let collisionNormal = {
-            x: collisionVector.x / distance,
-            y: collisionVector.y / distance
+            x: collisionVector.x/distance,
+            y: collisionVector.y/distance
         };
     
 
